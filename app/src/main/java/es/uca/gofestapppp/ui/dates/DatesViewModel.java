@@ -1,0 +1,19 @@
+package es.uca.gofestapppp.ui.dates;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
+public class DatesViewModel extends ViewModel {
+
+    private MutableLiveData<String> mText;
+
+    public DatesViewModel() {
+        mText = new MutableLiveData<>();
+        mText.setValue("This is dates fragment");
+    }
+
+    public LiveData<String> getText() {
+        return mText;
+    }
+}

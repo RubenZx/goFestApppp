@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_assistants">
+
+    <fragment
+        android:id="@+id/nav_assistants"
+        android:name="es.uca.gofestapppp.ui.assistants.AssistantsFragment"
+        android:label="@string/assistants"
+        tools:layout="@layout/fragment_assistants">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home_second" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_home_second"
+        android:name="es.uca.gofestapppp.ui.assistants.HomeSecondFragment"
+        android:label="@string/home_second"
+        tools:layout="@layout/fragment_home_second">
+        <action
+            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
+            app:destination="@id/nav_assistants" />
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_program"
+        android:name="es.uca.gofestapppp.ui.program.ProgramFragment"
+        android:label="@string/program"
+        tools:layout="@layout/fragment_program" />
+
+    <fragment
+        android:id="@+id/nav_date"
+        android:name="es.uca.gofestapppp.ui.dates.DatesFragment"
+        android:label="@string/dates"
+        tools:layout="@layout/fragment_dates" />
+
+    <fragment
+        android:id="@+id/nav_location"
+        android:name="es.uca.gofestapppp.ui.location.LocationFragment"
+        android:label="@string/location"
+        tools:layout="@layout/fragment_location" />
+
+</navigation>
