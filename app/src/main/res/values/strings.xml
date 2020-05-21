@@ -15,4 +15,7 @@
     <string name="dates">Fechas</string>
     <string name="assistants">Asistentes</string>
     <string name="gofest">GoFest</string>
+    <string name="ver">Ver</string>
+    <string name="user">Usuario</string>
+    <string name="userput">Actualizar Usuario</string>
 </resources>

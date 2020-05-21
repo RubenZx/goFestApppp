@@ -1,35 +1,57 @@
 package es.uca.gofestapppp.ui.assistants;
 
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import es.uca.gofestapppp.HttpRequest;
 import es.uca.gofestapppp.R;
+import es.uca.gofestapppp.User;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class AssistantsFragment extends Fragment {
 
     private AssistantsViewModel assistantsViewModel;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+    ArrayList<User> listData;
+    SimpleDateFormat sf = new SimpleDateFormat("yyyy-mm-dd");
+    HttpRequest request = new HttpRequest();
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        assistantsViewModel =
-                ViewModelProviders.of(this).get(AssistantsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_assistants, container, false);
-        final TextView textView = root.findViewById(R.id.text_assistants);
-        assistantsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_assistants, container, false);
+        listData = new ArrayList<>();
+        listData = request.getAll();
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerId);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        AdapterData adapter = new AdapterData(listData);
+        recyclerView.setAdapter(adapter);
+        return view;
     }
 }
+

@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
             app:destination="@id/nav_home_second" />
+        <action
+            android:id="@+id/action_nav_assistants_to_nav_user"
+            app:destination="@id/nav_user" />
     </fragment>
     <fragment
         android:id="@+id/nav_home_second"
@@ -46,5 +49,28 @@
         android:name="es.uca.gofestapppp.ui.location.LocationFragment"
         android:label="@string/location"
         tools:layout="@layout/fragment_location" />
+
+    <fragment
+        android:id="@+id/nav_user"
+        android:name="es.uca.gofestapppp.ui.assistants.UserFragment"
+        android:label="@string/user"
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_nav_user_to_nav_assistants"
+            app:destination="@id/nav_assistants" />
+        <action
+            android:id="@+id/action_nav_user_to_nav_userput"
+            app:destination="@id/nav_userput" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_userput"
+        android:name="es.uca.gofestapppp.ui.assistants.UserFragmentPut"
+        android:label="@string/userput"
+        tools:layout="@layout/fragment_userput" >
+        <action
+            android:id="@+id/action_nav_userput_to_nav_assistants"
+            app:destination="@id/nav_assistants" />
+    </fragment>
 
 </navigation>
