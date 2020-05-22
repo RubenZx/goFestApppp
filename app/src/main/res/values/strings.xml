@@ -18,4 +18,9 @@
     <string name="ver">Ver</string>
     <string name="user">Usuario</string>
     <string name="userput">Actualizar Usuario</string>
+    <string name="addUser">Agregar Usuario</string>
+    <string name="usuario">Usuario:</string>
+    <string name="dni">DNI:</string>
+    <string name="telefono">Telefono:</string>
+    <string name="nacimiento">Nacimiento:</string>
 </resources>

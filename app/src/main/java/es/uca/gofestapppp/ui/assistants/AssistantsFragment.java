@@ -6,11 +6,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -39,7 +43,7 @@ public class AssistantsFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     ArrayList<User> listData;
-    SimpleDateFormat sf = new SimpleDateFormat("yyyy-mm-dd");
+    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
     HttpRequest request = new HttpRequest();
 
 
@@ -51,6 +55,13 @@ public class AssistantsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         AdapterData adapter = new AdapterData(listData);
         recyclerView.setAdapter(adapter);
+        FloatingActionButton addUser = (FloatingActionButton) view.findViewById(R.id.floatingAddUser);
+        addUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_nav_assistants_to_nav_userpost);
+            }
+        });
         return view;
     }
 }

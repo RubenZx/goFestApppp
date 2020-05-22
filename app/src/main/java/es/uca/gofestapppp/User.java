@@ -1,6 +1,10 @@
 package es.uca.gofestapppp;
 
+import android.util.Log;
+
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class User implements Serializable {
@@ -14,6 +18,16 @@ public class User implements Serializable {
         this.telefono = telefono;
         this.nacimiento = nacimiento;
         this.inscripcion = inscripcion;
+    }
+
+    public User(String nombre, String dni, String telefono, Date nacimiento, Date inscripcion) throws ParseException {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.telefono = telefono;
+        this.nacimiento = nacimiento;
+        this.inscripcion = inscripcion;
+        Log.d("n", String.valueOf(this.nacimiento));
+        Log.d("i", String.valueOf(this.inscripcion));
     }
 
     public String getNombre() { return nombre; }

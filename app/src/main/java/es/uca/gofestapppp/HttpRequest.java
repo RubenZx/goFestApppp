@@ -22,15 +22,15 @@ import okhttp3.Response;
 
 public class HttpRequest {
 
-    OkHttpClient client = new OkHttpClient();
-    String url = "http://10.0.2.2:8080/assistants/";
-    SimpleDateFormat sf = new SimpleDateFormat("yyyy-mm-dd");
-    int SDK_INT = android.os.Build.VERSION.SDK_INT;
-    User user;
-    ArrayList<User> users;
+    private OkHttpClient client = new OkHttpClient();
+    private String url = "http://10.0.2.2:8080/assistants/";
+    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+    private User user;
+    private ArrayList<User> users;
     private static final MediaType JSON = MediaType.parse("application/json");
 
     public HttpRequest() {
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
@@ -72,12 +72,29 @@ public class HttpRequest {
 
     public void put(User u) throws IOException {
         String json = "{ \"name\": \"" + u.getNombre() + "\", \"dni\" : \"" + u.getDni() + "\", \"phone\" : " + u.getTelefono() + ", \"birthdate\" : \"" + sf.format(u.getNacimiento()) + "\", \"inscriptiondate\" : \"" + sf.format(u.getInscripcion()) + "\"}";
-        Log.d("n", json);
         RequestBody body = RequestBody.create(json, JSON);
-        Log.d("n", String.valueOf(body));
         Request request = new Request.Builder()
                 .url(url+u.getId())
                 .put(body)
+                .build();
+        Response res = client.newCall(request).execute();
+    }
+
+    public void post(User u) throws IOException {
+        String json = "{ \"name\": \"" + u.getNombre() + "\", \"dni\" : \"" + u.getDni() + "\", \"phone\" : " + u.getTelefono() + ", \"birthdate\" : \"" + sf.format(u.getNacimiento()) + "\", \"inscriptiondate\" : \"" + sf.format(u.getInscripcion()) + "\"}";
+        RequestBody body = RequestBody.create(json, JSON);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        Response res = client.newCall(request).execute();
+        Log.d("a", res.body().string());
+    }
+
+    public void delete(String id) throws IOException {
+        Request request = new Request.Builder()
+                .url(url+id)
+                .delete()
                 .build();
         Response res = client.newCall(request).execute();
     }

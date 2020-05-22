@@ -38,7 +38,7 @@ import okhttp3.Response;
 
 public class UserFragment extends Fragment {
 
-    SimpleDateFormat sf = new SimpleDateFormat("yyyy-mm-dd");
+    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
     User user;
     HttpRequest request = new HttpRequest();
 
@@ -62,7 +62,12 @@ public class UserFragment extends Fragment {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_nav_user_to_nav_userput);
+                try {
+                    request.delete(user.getId());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Navigation.findNavController(v).navigate(R.id.action_nav_user_to_nav_assistants);
                 Toast.makeText(getContext(), "eliminado", Toast.LENGTH_SHORT).show();
             }
         });

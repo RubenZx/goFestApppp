@@ -1,8 +1,6 @@
 package es.uca.gofestapppp.ui.assistants;
 
 import android.app.DatePickerDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,33 +15,33 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import org.json.JSONException;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import es.uca.gofestapppp.HttpRequest;
 import es.uca.gofestapppp.R;
 import es.uca.gofestapppp.User;
 
-public class UserFragmentPut extends Fragment {
+public class UserFragmentPost extends Fragment {
 
     SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-    User user, userput;
     HttpRequest request = new HttpRequest();
+    User userpost;
     DatePickerDialog.OnDateSetListener mDate;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_userput, container, false);
-        Bundle data = getArguments();
-        user = request.getUser(data.getString("user"));
+        View view = inflater.inflate(R.layout.fragment_userpost, container, false);
         final EditText username = (EditText)view.findViewById(R.id.edituser);
         final EditText dni = (EditText)view.findViewById(R.id.editdni);
         final EditText phone = (EditText)view.findViewById(R.id.editphone);
         final TextView birth = (TextView) view.findViewById(R.id.editbirth);
-        Button put = (Button)view.findViewById(R.id.put);
+        final TextView inscription = (TextView)view.findViewById(R.id.inscription);
+        inscription.setText(sf.format(new Date()));
+        birth.setText(sf.format(new Date()));
+        Button addUser = (Button)view.findViewById(R.id.post);
         birth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,28 +64,24 @@ public class UserFragmentPut extends Fragment {
             }
         };
 
-        put.setOnClickListener(new View.OnClickListener() {
+        addUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    userput = new User(user.getId(), username.getText().toString(), dni.getText().toString(), phone.getText().toString(), sf.parse(birth.getText().toString()), user.getInscripcion());
+                    userpost = new User(username.getText().toString(), dni.getText().toString(), phone.getText().toString(), sf.parse(birth.getText().toString()), sf.parse(inscription.getText().toString()));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 try {
-                    request.put(userput);
+                    request.post(userpost);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(getContext(), "Actualizado", Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(v).navigate(R.id.action_nav_userput_to_nav_assistants);
+                Toast.makeText(getContext(), "Agregado", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(v).navigate(R.id.action_nav_userpost_to_nav_assistants);
             }
         });
 
-        username.setText(user.getNombre());
-        dni.setText(user.getDni());
-        phone.setText(user.getTelefono());
-        birth.setText(sf.format(user.getNacimiento()));
         return view;
     }
 }

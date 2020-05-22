@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_nav_assistants_to_nav_user"
             app:destination="@id/nav_user" />
+        <action
+            android:id="@+id/action_nav_assistants_to_nav_userpost"
+            app:destination="@id/nav_userpost" />
     </fragment>
     <fragment
         android:id="@+id/nav_home_second"
@@ -70,6 +73,16 @@
         tools:layout="@layout/fragment_userput" >
         <action
             android:id="@+id/action_nav_userput_to_nav_assistants"
+            app:destination="@id/nav_assistants" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_userpost"
+        android:name="es.uca.gofestapppp.ui.assistants.UserFragmentPost"
+        android:label="@string/addUser"
+        tools:layout="@layout/fragment_userpost" >
+        <action
+            android:id="@+id/action_nav_userpost_to_nav_assistants"
             app:destination="@id/nav_assistants" />
     </fragment>
 
