@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +33,7 @@ public class UserFragmentPost extends Fragment {
     HttpRequest request = new HttpRequest();
     User userpost;
     DatePickerDialog.OnDateSetListener mDate;
+    String msg;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_userpost, container, false);
@@ -50,7 +53,7 @@ public class UserFragmentPost extends Fragment {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(getContext(), android.R.style.Theme_DeviceDefault, mDate, year, month, day);
+                DatePickerDialog dialog = new DatePickerDialog(getContext(), mDate, year, month, day);
 //                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -67,18 +70,26 @@ public class UserFragmentPost extends Fragment {
         addUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    userpost = new User(username.getText().toString(), dni.getText().toString(), phone.getText().toString(), sf.parse(birth.getText().toString()), sf.parse(inscription.getText().toString()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                if (username.getText().toString().isEmpty() || dni.getText().toString().isEmpty() || phone.getText().toString().isEmpty() || birth.getText().toString().isEmpty()) {
+                    Toast.makeText(getContext(), "Todos los campos son requeridos", Toast.LENGTH_SHORT).show();
                 }
-                try {
-                    request.post(userpost);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                else {
+                    try {
+                        userpost = new User(username.getText().toString(), dni.getText().toString(), phone.getText().toString(), sf.parse(birth.getText().toString()), sf.parse(inscription.getText().toString()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        msg = request.post(userpost);
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
+                    if(msg.equals("Asistente añadido con éxito.")){
+                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                        Navigation.findNavController(v).navigate(R.id.action_nav_userpost_to_nav_assistants);
+                    }
+                    else Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(getContext(), "Agregado", Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(v).navigate(R.id.action_nav_userpost_to_nav_assistants);
             }
         });
 

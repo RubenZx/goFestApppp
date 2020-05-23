@@ -30,6 +30,7 @@ import es.uca.gofestapppp.User;
 
 public class UserFragmentPut extends Fragment {
 
+    String msg;
     SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
     User user, userput;
     HttpRequest request = new HttpRequest();
@@ -52,7 +53,7 @@ public class UserFragmentPut extends Fragment {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(getContext(), android.R.style.Theme_DeviceDefault, mDate, year, month, day);
+                DatePickerDialog dialog = new DatePickerDialog(getContext(), mDate, year, month, day);
 //                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -75,12 +76,17 @@ public class UserFragmentPut extends Fragment {
                     e.printStackTrace();
                 }
                 try {
-                    request.put(userput);
-                } catch (IOException e) {
+                    msg = request.put(userput);
+                } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(getContext(), "Actualizado", Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(v).navigate(R.id.action_nav_userput_to_nav_assistants);
+                if (msg.equals("Asistente actualizado con éxito.")) {
+                    Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(v).navigate(R.id.action_nav_userput_to_nav_assistants);
+                }
+                else{
+                    Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

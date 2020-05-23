@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class User implements Serializable {
+public class User{
     public String nombre, dni, telefono, id;
     public Date nacimiento, inscripcion;
 
@@ -26,8 +26,6 @@ public class User implements Serializable {
         this.telefono = telefono;
         this.nacimiento = nacimiento;
         this.inscripcion = inscripcion;
-        Log.d("n", String.valueOf(this.nacimiento));
-        Log.d("i", String.valueOf(this.inscripcion));
     }
 
     public String getNombre() { return nombre; }

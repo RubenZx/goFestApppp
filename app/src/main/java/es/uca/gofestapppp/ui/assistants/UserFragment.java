@@ -41,6 +41,7 @@ public class UserFragment extends Fragment {
     SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
     User user;
     HttpRequest request = new HttpRequest();
+    String msg;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,12 +64,12 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    request.delete(user.getId());
-                } catch (IOException e) {
+                    msg = request.delete(user.getId());
+                } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
                 Navigation.findNavController(v).navigate(R.id.action_nav_user_to_nav_assistants);
-                Toast.makeText(getContext(), "eliminado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
             }
         });
         btnPut.setOnClickListener(new View.OnClickListener() {

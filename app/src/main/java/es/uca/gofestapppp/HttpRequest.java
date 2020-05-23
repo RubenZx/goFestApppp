@@ -20,7 +20,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class HttpRequest {
+public class  HttpRequest {
 
     private OkHttpClient client = new OkHttpClient();
     private String url = "http://10.0.2.2:8080/assistants/";
@@ -70,7 +70,7 @@ public class HttpRequest {
         return users;
     }
 
-    public void put(User u) throws IOException {
+    public String put(User u) throws IOException, JSONException {
         String json = "{ \"name\": \"" + u.getNombre() + "\", \"dni\" : \"" + u.getDni() + "\", \"phone\" : " + u.getTelefono() + ", \"birthdate\" : \"" + sf.format(u.getNacimiento()) + "\", \"inscriptiondate\" : \"" + sf.format(u.getInscripcion()) + "\"}";
         RequestBody body = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
@@ -78,9 +78,27 @@ public class HttpRequest {
                 .put(body)
                 .build();
         Response res = client.newCall(request).execute();
+        JSONObject mensage = new JSONObject(res.body().string());
+        try {
+            if (mensage.has("errors")) {
+                JSONObject error = new JSONObject(mensage.getString("errors"));
+                if (error.has("dni")) {
+                    JSONObject errordni = new JSONObject(error.getString("dni"));
+                    Log.d("a", errordni.getString("message"));
+                    return errordni.getString("message");
+                }
+                if (error.has("phone")) {
+                    JSONObject errorphone = new JSONObject(error.getString("phone"));
+                    return errorphone.getString("message");
+                }
+            }
+        }catch (JSONException ignored){
+
+        }
+        return mensage.getString("msg");
     }
 
-    public void post(User u) throws IOException {
+    public String post(User u) throws IOException, JSONException {
         String json = "{ \"name\": \"" + u.getNombre() + "\", \"dni\" : \"" + u.getDni() + "\", \"phone\" : " + u.getTelefono() + ", \"birthdate\" : \"" + sf.format(u.getNacimiento()) + "\", \"inscriptiondate\" : \"" + sf.format(u.getInscripcion()) + "\"}";
         RequestBody body = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
@@ -88,14 +106,33 @@ public class HttpRequest {
                 .post(body)
                 .build();
         Response res = client.newCall(request).execute();
-        Log.d("a", res.body().string());
+        JSONObject mensage = new JSONObject(res.body().string());
+        try {
+            if (mensage.has("errors")) {
+                JSONObject error = new JSONObject(mensage.getString("errors"));
+                if (error.has("dni")) {
+                    JSONObject errordni = new JSONObject(error.getString("dni"));
+                    Log.d("a", errordni.getString("message"));
+                    return errordni.getString("message");
+                }
+                if (error.has("phone")) {
+                    JSONObject errorphone = new JSONObject(error.getString("phone"));
+                    return errorphone.getString("message");
+                }
+            }
+        }catch (JSONException ignored){
+
+        }
+        return mensage.getString("msg");
     }
 
-    public void delete(String id) throws IOException {
+    public String delete(String id) throws IOException, JSONException {
         Request request = new Request.Builder()
                 .url(url+id)
                 .delete()
                 .build();
         Response res = client.newCall(request).execute();
+        JSONObject mensage = new JSONObject(res.body().string());
+        return mensage.getString("msg");
     }
 }
