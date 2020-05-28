@@ -52,6 +52,36 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tyler_image" />
             </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/charlixcx_image"
+                    android:layout_width="410dp"
+                    android:layout_height="230dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="12dp"
+                    android:contentDescription="@string/charli_xcx"
+                    android:src="@drawable/charli_xcx"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.125"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/charlixcx_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="180dp"
+                    android:layout_marginTop="184dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/aldrich"
+                    android:text="@string/charli_xcx"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/colorPrimaryDark"
+                    app:layout_constraintBottom_toBottomOf="@+id/charlixcx_image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/charlixcx_image" />
+            </RelativeLayout>
             <TextView
                 android:id="@+id/program_date2"
                 android:layout_width="wrap_content"
@@ -86,6 +116,35 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="@color/colorPrimaryDark"
                     app:layout_constraintEnd_toStartOf="@+id/foals_image"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/glassAnimals_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/foals"
+                    android:src="@drawable/glass_animals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/glassAnimals_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/aldrich"
+                    android:text="@string/glass_animals"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/colorPrimaryDark"
+                    app:layout_constraintEnd_toStartOf="@+id/glassAnimals_image"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent" />
             </RelativeLayout>
