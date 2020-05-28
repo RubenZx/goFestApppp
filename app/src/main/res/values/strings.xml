@@ -23,4 +23,14 @@
     <string name="dni">DNI:</string>
     <string name="telefono">Telefono:</string>
     <string name="nacimiento">Nacimiento:</string>
+    <string name="event1stDate">25/06/2020</string>
+    <string name="tylethecreator">TyleTheCreator</string>
+    <string name="tyler_the_creator">Tyler, The Creator</string>
+    <string name="event2dDate">26/06/2020</string>
+    <string name="Foals">Foals</string>
+    <string name="foals">Foalss</string>
+    <string name="event3thDate">27/06/2020</string>
+    <string name="AltJ">Alt-j</string>
+    <string name="Alt_J">AltJ</string>
+    <string name="Clairo">Clairo</string>
 </resources>

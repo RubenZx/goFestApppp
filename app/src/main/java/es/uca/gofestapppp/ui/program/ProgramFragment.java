@@ -20,16 +20,9 @@ public class ProgramFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        programViewModel =
-                ViewModelProviders.of(this).get(ProgramViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_program, container, false);
-        final TextView textView = root.findViewById(R.id.text_program);
-        programViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }
