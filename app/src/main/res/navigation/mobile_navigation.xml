@@ -10,29 +10,15 @@
         android:name="es.uca.gofestapppp.ui.assistants.AssistantsFragment"
         android:label="@string/assistants"
         tools:layout="@layout/fragment_assistants">
-
-        <action
-            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />
         <action
             android:id="@+id/action_nav_assistants_to_nav_user"
             app:destination="@id/nav_user" />
         <action
             android:id="@+id/action_nav_assistants_to_nav_userpost"
             app:destination="@id/nav_userpost" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_home_second"
-        android:name="es.uca.gofestapppp.ui.assistants.HomeSecondFragment"
-        android:label="@string/home_second"
-        tools:layout="@layout/fragment_home_second">
         <action
-            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-            app:destination="@id/nav_assistants" />
-
-        <argument
-            android:name="myArg"
-            app:argType="string" />
+            android:id="@+id/action_nav_assistants_to_nav_location"
+            app:destination="@id/nav_location" />
     </fragment>
 
     <fragment
@@ -45,7 +31,8 @@
         android:id="@+id/nav_date"
         android:name="es.uca.gofestapppp.ui.dates.DatesFragment"
         android:label="@string/dates"
-        tools:layout="@layout/fragment_dates" />
+        tools:layout="@layout/fragment_dates" >
+    </fragment>
 
     <fragment
         android:id="@+id/nav_location"
