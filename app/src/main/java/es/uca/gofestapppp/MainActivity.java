@@ -46,9 +46,18 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = getIntent();
             if (intent.getExtras().containsKey("changeFragment")) {
                 String value =intent.getExtras().getString("changeFragment");
+                switch (value){
+                    case "location":
+                        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_nav_assistants_to_nav_location);
+                        break;
+                    case "program":
+                        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_nav_assistants_to_nav_program);
+                        break;
+                }
+                /**
                 if(value.equals("location")){
                     Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_nav_assistants_to_nav_location);
-                }
+                }*/
             }
         }catch(Exception e){}
     }

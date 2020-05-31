@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_nav_assistants_to_nav_location"
             app:destination="@id/nav_location" />
+        <action
+            android:id="@+id/action_nav_assistants_to_nav_program"
+            app:destination="@id/nav_program" />
     </fragment>
 
     <fragment
