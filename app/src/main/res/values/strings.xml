@@ -35,4 +35,17 @@
     <string name="Clairo">Clairo</string>
     <string name="charli_xcx">Charli XCX</string>
     <string name="glass_animals">Glass Animals</string>
+    <string name="editar">Editar</string>
+    <string name="usuario">Usuario:</string>
+    <string name="dni">DNI:</string>
+    <string name="telefono">Telefono:</string>
+    <string name="nacimiento">Nacimiento:</string>
+    <string name="inscripcion">Inscripcion:</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="agregar">Agregar</string>
+    <string name="usuario">Usuario:</string>
+    <string name="dni">DNI:</string>
+    <string name="telefono">Telefono:</string>
+    <string name="nacimiento">Nacimiento:</string>
+    <string name="actualizar">Actualizar</string>
 </resources>
